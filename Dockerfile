@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json ./
 
 RUN apk add --no-cache \
-    firefox-esr \
+    firefox \
     dbus-x11 \
     udev
 

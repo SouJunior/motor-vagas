@@ -4,7 +4,10 @@ import firefox from 'selenium-webdriver/firefox';
 export async function createDriver() {
   const options = new firefox.Options()
 
-  options.addArguments("--headless=new")
+  options.setBinary('/usr/bin/firefox');
+
+
+  options.addArguments("--headless")
   options.addArguments('--ignore-ssl-errors=yes');
   options.addArguments('--ignore-certificate-errors');
 

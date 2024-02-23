@@ -1,6 +1,10 @@
-import {capitalizedString} from './delay';
+import { capitalizedString } from './delay';
 
 export function companyLogoMapper(location: string) {
+  if (!location) { // Verificação para lidar com localizações indefinidas ou nulas
+    return '🏳️ Unknown'; // Retorna uma bandeira genérica e texto para localizações desconhecidas
+  }
+
   const countryLogo = {
     brazil: "BR",
     netherlands: '🇳🇱',
@@ -8,10 +12,11 @@ export function companyLogoMapper(location: string) {
     finland: '🇫🇮',
     sweden: '🇸🇪',
     france: '🇫🇷',
-    denmark: '🇦🇹',
+    denmark: '🇩🇰', 
   };
+
   const country = location.toLocaleLowerCase().split(',');
-  const countryName = country[country.length - 1];
-  const logo = countryLogo[countryName.trim() as keyof typeof countryLogo] ?? '🏳️';
-  return `${logo} ${capitalizedString(countryName.trim())}`;
+  const countryName = country[country.length - 1].trim();
+  const logo = countryLogo[countryName as keyof typeof countryLogo] ?? '🏳️'; // Usa '🏳️' para países não mapeados
+  return `${logo} ${capitalizedString(countryName)}`; // Retorna a bandeira e o nome do país capitalizado
 }
