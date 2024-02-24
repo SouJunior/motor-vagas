@@ -14,6 +14,6 @@ export const scraper = async (
   } catch (err) {
     console.log(err);
   } finally {
-    console.log('job done!');
+    console.log('jobs saved!');
   }
 };

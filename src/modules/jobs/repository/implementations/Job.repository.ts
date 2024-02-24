@@ -1,14 +1,8 @@
 import { AppDataSource } from "../../../../database/data-source";
 import { Repository } from "typeorm";
 import { IJobRepository } from "../IJobRepository";
-import { ISaveJobDTO } from "../../dtos/SaveJobs.dto";
 import { Job } from "../../../../entities/Job.entity";
 import { IListJobDTO } from "../../dtos/ListJobs.dto";
-
-export interface IResponse {
-    message: string,
-    status: string
-}
 
 export class JobRepository implements IJobRepository {
 
@@ -18,9 +12,19 @@ export class JobRepository implements IJobRepository {
         this.repository = AppDataSource.getRepository(Job)
     }
 
-    async save(data: IListJobDTO): Promise<void> {
+    async saveJobs(data: IListJobDTO): Promise<void> {
 
         await this.repository.save(data)
     }
+
+    async listJobs(): Promise<Job[]> {
+
+       return await this.repository.find()
+    }
+
+    async findJob(jobName: string): Promise<Job> {
+
+        return await this.repository.findOne({where: { jobName}})
+     }
 
 }
