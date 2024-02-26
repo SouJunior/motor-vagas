@@ -1,12 +1,7 @@
-export interface ICreateJobDTO {
-    title: string,
-    company: string,
-    location: string,
-    time: string,
-    link: string,
-    jobName: string,
-    created_date: Date,
-    visa: boolean,
-    description: string,
-    source: string
+import { Job } from "../../../entities/Job.entity";
+
+export interface IResponse {
+    status: number,
+    message: string,
+    data?: Job | Job[]
 }

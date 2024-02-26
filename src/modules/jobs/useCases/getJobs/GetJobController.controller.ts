@@ -9,8 +9,8 @@ export class GetJobController {
 
         const getJobUseCase = container.resolve(GetJobUseCase)
 
-        await getJobUseCase.execute(locations, keyword, description)
+        const { status, message } = await getJobUseCase.execute(locations, keyword, description)
 
-        return res.status(201).json({ message: "Jobs collected from linkedin successfully"});
+        return res.status(status).json({message});
     }
 }
