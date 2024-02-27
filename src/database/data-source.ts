@@ -14,6 +14,9 @@ export const AppDataSource = new DataSource({
     username: DATABASE_USER,
     password: DATABASE_PASS,
     database: DATABASE_NAME,
+    synchronize: true,
+    logging: true,
     migrations: ['src/../**/migrations/*{.ts,.js}'],
+    //ssl: { rejectUnauthorized: false },
     entities: [Job, Company]
 })

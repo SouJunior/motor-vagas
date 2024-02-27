@@ -28,7 +28,7 @@ export class Job {
     created_date: Date
 
     @Column()
-    visa: Boolean
+    visa: boolean
 
     @Column()
     description: string
