@@ -17,4 +17,4 @@ RUN apk update && apk add chromium chromium-chromedriver
 
 EXPOSE 3333
 
-CMD ["npm", "run", "dev"]
+CMD sh -c "npx ts-node ./node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts && npm run dev"
