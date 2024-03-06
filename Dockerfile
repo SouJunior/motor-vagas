@@ -19,7 +19,8 @@ ARG GECKODRIVER_VERSION=0.30.0
 RUN curl -sL "https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz" -o /tmp/geckodriver.tar.gz \
  && tar -zxf /tmp/geckodriver.tar.gz -C /usr/local/bin \
  && rm /tmp/geckodriver.tar.gz \
- && chmod +x /usr/local/bin/geckodriver
+ && chmod +x /usr/local/bin/geckodriver \
+ && chmod 777 /usr/local/bin/geckodriver 
 
 # Copiar o arquivo package.json e instalar as dependências do projeto
 COPY package.json ./
