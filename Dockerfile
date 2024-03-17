@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     curl
 
 # Definir a versão do Geckodriver que você deseja instalar
-ARG GECKODRIVER_VERSION=0.30.0
+ARG GECKODRIVER_VERSION=0.34.0
 
 # Baixar e instalar o Geckodriver
 RUN curl -sL "https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz" -o /tmp/geckodriver.tar.gz \
