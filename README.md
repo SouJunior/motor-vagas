@@ -1,4 +1,5 @@
 
+
 <a id="Motor de vagas da SouJunior"></a>
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=2088f2&style=for-the-badge)
@@ -228,6 +229,42 @@ O projeto estará rodando em:
 
 <a id="stack_utilizada"></a>
 
+## Como utilizar
+
+Este webscrapper está em forma de api, portanto faz sua função através de requisições. As mesmas deverão ser feitas temporariamente localmente, pois o webscrapper dentro de container docker não funciona nos sites de hospedagens back-end gratuítos que encontramos, entretanto hospedamos essa api no render para que possamos nos conectar a ele e ao banco de dados e fazer a integração para outros serviços. (como o próprio portal de vagas):
+
+Link da api no render: https://motor-vagas.onrender.com/
+
+<h3> Coletar vagas (POST): <h3/>
+
+	 URL: http://host:port/job
+	 BODY:
+	  [
+	  "locations": Array de strings (aceita um único item no array),
+	  "keyword": String
+	  ]
+OBS: Se for procurar por vagas brasileiras no item "locations", insira "brazil", pois é a única forma que a url do linkedin (fonte de onde pegamos as vagas) reconhece como vagas daqui.
+
+ <h3> Listar vagas (GET): <h3/>
+
+	 URL: http://host:port/job
+ 
+ <h3> Deletar vagas (DELETE): <h3/>
+ 
+    URL: http://host:port/job
+ ---
+ 
+( OPCIONAIS )
+<h3> Coletar nomes de empresas do site relocate.me (POST): <h3/>
+
+	 URL: http://host:port/company/relocateMe
+
+ <h3> Coletar nomes de empresas do site siaExplains (POST): <h3/>
+
+	 URL: http://host:port/company/siaExplains
+
+---
+
 ## Stack utilizada ⚙
 
 **Linguagens:**
@@ -252,6 +289,7 @@ O projeto estará rodando em:
 ## Devs 👨‍💻👨‍💻
 
 | [<img src="https://avatars.githubusercontent.com/PatrickOtero" width=115><br><sub>Patrick Otero</sub>](https://github.com/PatrickOtero) | [<img src="https://avatars.githubusercontent.com/MikaelMelo1" width=115><br><sub>Mikael Melo</sub>](https://github.com/MikaelMelo1) |
+| :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
 
 ## Mentores 🙎🏻‍♂️
 
