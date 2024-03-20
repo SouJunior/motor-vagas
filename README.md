@@ -288,8 +288,8 @@ OBS: Se for procurar por vagas brasileiras no item "locations", insira "brazil",
 
 ## Devs 👨‍💻👨‍💻
 
-| [<img src="https://avatars.githubusercontent.com/PatrickOtero" width=115><br><sub>Patrick Otero</sub>](https://github.com/PatrickOtero) | [<img src="https://avatars.githubusercontent.com/MikaelMelo1" width=115><br><sub>Mikael Melo</sub>](https://github.com/MikaelMelo1) |
-| :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars.githubusercontent.com/PatrickOtero" width=115><br><sub>Patrick Otero</sub>](https://github.com/PatrickOtero) | [<img src="https://avatars.githubusercontent.com/MikaelMelo1" width=115><br><sub>Mikael Melo</sub>](https://github.com/MikaelMelo1)
+| :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------:
 
 ## Mentores 🙎🏻‍♂️
 
