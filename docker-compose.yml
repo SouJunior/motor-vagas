@@ -12,11 +12,11 @@ services:
     env_file:
       - .env
     environment:
-     - DATABASE_HOST=aws-0-us-west-1.pooler.supabase.com
-     - DATABASE_USER=postgres.lyqvlzebnopaoqwdeohb
-     - DATABASE_PASS=Qmqj2pYpCsBJCFooqbzG9sMf3kBNIrmL
-     - DATABASE_NAME=postgres
-     - DATABASE_PORT=5432
+     - DATABASE_HOST
+     - DATABASE_USER
+     - DATABASE_PASS
+     - DATABASE_NAME
+     - DATABASE_PORT
     dns:
       - 8.8.8.8
       - 8.8.4.4
