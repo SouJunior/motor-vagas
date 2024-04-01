@@ -29,11 +29,8 @@ export class JobRepository implements IJobRepository {
 
      async deleteJobs(): Promise<void> {
         try {
-            console.log("antes de excluir")
          await this.repository.delete({})
-         console.log("depois de excluir")
         } catch( error: any) {
-            console.log("erro ao excluir")
             console.log(error)
         }
      }
