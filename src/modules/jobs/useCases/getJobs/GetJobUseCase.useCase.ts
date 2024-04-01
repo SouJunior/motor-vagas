@@ -30,7 +30,7 @@ export class GetJobUseCase {
 
         }
 
-        return { status: 200, message: "Jobs saved succesfully"}
+        return { status: 200, message: "Jobs saved successfully"}
         
         } catch (error) {
             console.log(error.message)

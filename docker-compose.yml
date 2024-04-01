@@ -1,19 +1,6 @@
 version: "3.7"
 
 services: 
-  database_jobscrapper:
-    image: postgres
-    container_name: database_jobscrapper
-    restart: always
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_USER=docker123
-      - POSTGRES_PASSWORD=jobscrapper321
-      - POSTGRES_DB=jobscrapper_database
-    volumes:
-      - pgdata:/data/postgres
-
   jobscrapper_api: 
     build: .
     container_name: jobscrapper_api
@@ -22,16 +9,14 @@ services:
     command: sh -c "npx ts-node ./node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts && npm run dev"
     volumes:
       - .:/app
-    depends_on:
-      - database_jobscrapper
     env_file:
       - .env
     environment:
-      - DATABASE_HOST=database_jobscrapper
-      - DATABASE_USER=docker123
-      - DATABASE_PASS=jobscrapper321
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=jobscrapper_database
+     - DATABASE_HOST
+     - DATABASE_USER
+     - DATABASE_PASS
+     - DATABASE_NAME
+     - DATABASE_PORT
     dns:
       - 8.8.8.8
       - 8.8.4.4
