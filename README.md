@@ -63,33 +63,6 @@ Após isso pode fechar a janela!
 
 ---
 
- <a id="instalando_o_docker"></a>
-
-## 🐳  Instalando o Docker
-
-1.Install Docker Desktop on Mac: https://docs.docker.com/desktop/install/mac-install/
-
-2.Install Docker Desktop on Windows: https://docs.docker.com/desktop/install/windows-install/
-
-3.Install Docker Desktop on Linux: https://docs.docker.com/desktop/install/linux-install/
-
-Agora você pode instalar tudo o que precisa para executar o Windows Subsystem for Linux (WSL) inserindo este comando em um PowerShell administrador ou Windows Command Prompt e, em seguida, reiniciando sua máquina.
-  
-`wsl --install`
-
-Após a instalação do Wsl, vamos até a pasta do projeto e rodar o comando
-
-`docker-compose up -d`
-
-
-O projeto estará rodando em:
-
-`localhost:3333`
-
-agora basta seguir para [Instalando o Insomnia](#instalando_o_insomnia)
-
----
-
 ## 🐳 Como instalar o PostgreSQL no Windows
 
 1.Para começar a instalação do PostgreSQL faremos o download diretamente do site oficial, a partir desse link.
@@ -177,6 +150,8 @@ Instale as dependências
 
 Feito a instalação dos pacotes basta renomear o arquivo `.env.example` para `.env` e preencher com as suas informações do banco de dados, no caso estamos usando o PostgreSQL
 
+Caso precise das informações para preencher o .env, pergunte a alguém da equipe de backend.
+
 Arquivo .env
 
 ```bash
@@ -245,9 +220,36 @@ Link da api no render: https://motor-vagas.onrender.com/
 	  ]
 OBS: Se for procurar por vagas brasileiras no item "locations", insira "brazil", pois é a única forma que a url do linkedin (fonte de onde pegamos as vagas) reconhece como vagas daqui.
 
+<h3> Exemplo: <h3/>
+
+	 URL: http://host:port/job
+	 BODY:
+	  [
+	  "locations": ["brazil"],
+	  "keyword": python
+	  ]
+	  return: "Jobs saved successfully"
+
  <h3> Listar vagas (GET): <h3/>
 
 	 URL: http://host:port/job
+
+	 	  return:
+	  [
+		{
+	  		"id": "123",
+			"title": "desenvolvedor android java jr",
+			"company": "Nome da compania",
+			"location": "Belo Horizonte, Minas Gerais, Brazil",
+			"time": "6 hours ago",
+			"link": "link para a vaga",
+			"jobName": "desenvolvedor-android-java-jr-at",
+			"created_date": "data de criaçao",
+			"visa": false,
+			"description": "",
+			"source": "Linkedin"
+		},
+	  ]
  
  <h3> Deletar vagas (DELETE): <h3/>
  
