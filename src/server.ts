@@ -11,7 +11,9 @@ import cors from "cors";
 const server = express()
 
 const corsOptions = {
-    origin: process.env.ORIGIN,
+    origin: "*", 
+    methods: "GET,PUT,PATCH,POST,DELETE",
+    credentials: true,
     optionsSuccessStatus: 200,
 }
 
