@@ -1,14 +1,23 @@
 import "reflect-metadata";
-import { AppDataSource } from "./database/data-source"
-import "./shared/container"
-import express, { NextFunction, Request, Response } from "express"
-import * as dotenv from "dotenv"
+import { AppDataSource } from "./database/data-source";
+import "./shared/container";
+import express, { NextFunction, Request, Response } from "express";
+import * as dotenv from "dotenv";
 dotenv.config();
-import { router } from "./routes"
+import { router } from "./routes";
 import { AppError } from "./errors/appError";
+import cors from "cors";
 
 const server = express()
 
+const corsOptions = {
+    origin: "*", 
+    methods: "GET,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 200,
+}
+
+server.use(cors(corsOptions));
 const { PORT } = process.env
 
 server.use(express.json())
