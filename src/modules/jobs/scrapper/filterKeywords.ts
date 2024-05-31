@@ -20,6 +20,7 @@ export async function filterKeyword(jobs: IListJobDTO[]): Promise<IListJobDTO[]>
         const element = await driver.findElement(By.className('core-section-container'));
         if (element) {
           text = await element.getText(); // Atribui novo valor à variável text
+          console.log(text);
         }
       } catch (e) {
         console.log("Element not found or error in fetching text", e);
@@ -27,7 +28,7 @@ export async function filterKeyword(jobs: IListJobDTO[]): Promise<IListJobDTO[]>
       
       const haveVisa = text.toLocaleLowerCase().includes('visa sponsorship');
       job.visa = haveVisa;
-      job.description = cleanedText(text).substring(0, 300) + '...';
+      job.description = text;
       filteredJobs.push(job);
 
       // Fechamento correto de abas/guias adicionais, se houver

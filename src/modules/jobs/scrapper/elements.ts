@@ -22,8 +22,9 @@ export async function elementGetter({el, selector, method = 'text', attr = 'href
 
 export async function jobDescriptionClicker(el: WebDriver) {
   try {
-    const showMoreBtn = await el.findElement(By.className('show-more-less-html__button--more'));
+    const showMoreBtn = await el.findElement(By.className('show-more-less-html__button show-more-less-button'));
     await showMoreBtn?.click();
+    
   }
   catch (err){
     console.log("element didn't had description", err)
