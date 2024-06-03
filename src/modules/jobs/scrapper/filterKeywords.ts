@@ -27,7 +27,7 @@ export async function filterKeyword(jobs: IListJobDTO[]): Promise<IListJobDTO[]>
       
       const haveVisa = text.toLocaleLowerCase().includes('visa sponsorship');
       job.visa = haveVisa;
-      job.description = cleanedText(text).substring(0, 300) + '...';
+      job.description = text;
       filteredJobs.push(job);
 
       // Fechamento correto de abas/guias adicionais, se houver

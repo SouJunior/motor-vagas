@@ -8,7 +8,7 @@ export const scraper = async (
 ) => {
   try {
     const jobs = (await jobCollector(locations, keyword)) ?? [];
-    const filteredJobs = isCheckDescription ? await filterKeyword(jobs) : jobs;;
+    const filteredJobs = isCheckDescription ? jobs : await filterKeyword(jobs);
 
     return filteredJobs
   } catch (err) {
