@@ -20,7 +20,6 @@ export async function filterKeyword(jobs: IListJobDTO[]): Promise<IListJobDTO[]>
         const element = await driver.findElement(By.className('core-section-container'));
         if (element) {
           text = await element.getText(); // Atribui novo valor à variável text
-          console.log(text);
         }
       } catch (e) {
         console.log("Element not found or error in fetching text", e);
