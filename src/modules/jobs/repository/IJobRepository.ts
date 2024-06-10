@@ -5,5 +5,5 @@ export interface IJobRepository {
     saveJobs(data: IListJobDTO ): Promise<void>;
     listJobs(): Promise<Job[]>;
     findJob(jobName: string): Promise<Job>;
-    deleteJobs(): Promise<void>;
+    deleteJobs(jobIds: string): Promise<void> ;
 }

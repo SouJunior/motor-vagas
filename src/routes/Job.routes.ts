@@ -11,6 +11,6 @@ const deleteJobsController = new DeleteJobsController()
 
 jobRouter.get("/", listJobsController.handle)
 jobRouter.post("/", getJobController.handle)
-jobRouter.delete("/", deleteJobsController.handle)
+jobRouter.delete("/:id", deleteJobsController.handle)
 
 export { jobRouter }
