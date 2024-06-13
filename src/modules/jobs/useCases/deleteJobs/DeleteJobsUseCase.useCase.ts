@@ -8,15 +8,12 @@ export class DeleteJobsUseCase {
         @inject("JobRepository")
         private jobRepository: IJobRepository) {}
 
-    async execute(): Promise<IResponse> {
-        
+    async execute(jobIdS: string): Promise<IResponse> {     
         try {
-           await this.jobRepository.deleteJobs()
-
-        return { status: 200, message: "Jobs deleted successfully"}
-        
+            await this.jobRepository.deleteJobs(jobIdS)
+            return { status: 200, message: `Jobs deleted successfully ${jobIdS}`}     
         } catch (error) {
-            console.log(error.message)
+            return { status: 500, message: "Failed to delete jobs"};
         }
     }
 }

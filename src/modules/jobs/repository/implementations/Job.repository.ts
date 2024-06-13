@@ -27,9 +27,10 @@ export class JobRepository implements IJobRepository {
         return await this.repository.findOne({where: { jobName}})
      }
 
-     async deleteJobs(): Promise<void> {
+     async deleteJobs(id: string): Promise<void> {
         try {
-         await this.repository.delete({})
+            
+         await this.repository.delete({id})
         } catch( error: any) {
             console.log(error)
         }
