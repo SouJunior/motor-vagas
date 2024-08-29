@@ -1,0 +1,264 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Motor-Vagas",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "tags": [
+    {
+      "name": "job"
+    },
+    {
+      "name": "company"
+    }
+  ],
+  "paths": {
+    "/job": {
+      "get": {
+        "tags": ["job"],
+        "summary": "Retornar todas as vagas salvas",
+        "operationId": "getJobs",
+        "responses": {
+          "200": {
+            "description": "Vagas retornadas com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/JobResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["job"],
+        "summary": "Iniciar Webscrapper e salvar vagas",
+        "operationId": "postJobs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListJobsSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Vagas salvas com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Jobs saved successfully"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["job"],
+        "summary": "Excluir vaga pelo id",
+        "operationId": "deleteJob",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vaga deletada com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Jobs deleted successfully"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha ao excluir vaga",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Failed to delete jobs"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/job/counter": {
+      "get": {
+        "tags": ["job"],
+        "summary": "Retornar o total de vagas salvas",
+        "operationId": "countJobs",
+        "responses": {
+          "200": {
+            "description": "Total de vagas retornado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CounterResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/company/relocateMe": {
+      "post": {
+        "tags": ["company"],
+        "summary": "Selecionar as empresas do site https://relocate.me/companies e salvar",
+        "description": "Roda webscrapper em site https://relocate.me/companies e salva as empresas no banco de dados",
+        "operationId": "getRelocateMeCompanies",
+        "responses": {
+          "201": {
+            "description": "Empresas do site relocate.me salvas com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Relocate.me companies info saved successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/company/siaExplains": {
+      "post": {
+        "tags": ["company"],
+        "summary": "Selecionar as empresas do site https://siaexplains.github.io/visa-sponsorship-companies/ e salvar",
+        "description": "Roda webscrapper em site https://siaexplains.github.io/visa-sponsorship-companies/ e salva as empresas no banco de dados",
+        "operationId": "getRelocateMeCompanies",
+        "responses": {
+          "201": {
+            "description": "Empresas do site siaexplains salvas com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "SiaExplains companies info saved successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "jobName": {
+            "type": "string"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        }
+      },
+      "JobResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Job"
+            }
+          },
+          "message": {
+            "type": "string",
+            "example": "Jobs listed successfully"
+          }
+        }
+      },
+      "ListJobsSchema": {
+        "type": "object",
+        "properties": {
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Brasil"]
+          },
+          "keyword": {
+            "type": "string",
+            "example": "desenvolvedor"
+          },
+          "description": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "CounterResponse": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "UploadImageSchema": {
+        "description": "Params to run the webscrapper",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListJobsSchema"
+            }
+          }
+        }
+      }
+    }
+  }
+}
