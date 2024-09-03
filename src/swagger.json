@@ -41,7 +41,7 @@
       "post": {
         "tags": ["job"],
         "summary": "Iniciar Webscrapper e salvar vagas",
-        "operationId": "postJobs",
+        "operationId": "executeJobsScrapper",
         "requestBody": {
           "content": {
             "application/json": {
@@ -64,7 +64,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/job/{id}": {
       "delete": {
         "tags": ["job"],
         "summary": "Excluir vaga pelo id",
@@ -129,7 +131,7 @@
         "tags": ["company"],
         "summary": "Selecionar as empresas do site https://relocate.me/companies e salvar",
         "description": "Roda webscrapper em site https://relocate.me/companies e salva as empresas no banco de dados",
-        "operationId": "getRelocateMeCompanies",
+        "operationId": "executeRelocateMeCompaniesScrapper",
         "responses": {
           "201": {
             "description": "Empresas do site relocate.me salvas com sucesso",
@@ -149,7 +151,7 @@
         "tags": ["company"],
         "summary": "Selecionar as empresas do site https://siaexplains.github.io/visa-sponsorship-companies/ e salvar",
         "description": "Roda webscrapper em site https://siaexplains.github.io/visa-sponsorship-companies/ e salva as empresas no banco de dados",
-        "operationId": "getRelocateMeCompanies",
+        "operationId": "executeSiaExplainsCompaniesScrapper",
         "responses": {
           "201": {
             "description": "Empresas do site siaexplains salvas com sucesso",
