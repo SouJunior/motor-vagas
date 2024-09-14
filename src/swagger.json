@@ -2,11 +2,16 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Swagger Motor-Vagas",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "servers": [
     {
-      "url": "http://localhost:8080"
+      "url": "http://localhost:8080",
+      "description": "Servidor de desenvolvimento"
+    },
+    {
+      "url": "https://motor-vagas.onrender.com",
+      "description": "Servidor de produção"
     }
   ],
   "tags": [
@@ -20,9 +25,38 @@
   "paths": {
     "/job": {
       "get": {
-        "tags": ["job"],
-        "summary": "Retornar todas as vagas salvas",
+        "tags": [
+          "job"
+        ],
+        "summary": "Retornar as vagas salvas",
         "operationId": "getJobs",
+        "description": "Retornar as vagas que correspondem aos filtros enviados ou todas as vagas caso nenhum filtro seja enviado",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Responsável por filtrar as vagas por título OU nome OU descrição OU empresa",
+            "required": false,
+            "example": "desenvolvedor",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Responsável por ordenar os resultados pela data de criação. Se não enviado, o padrão é ASC",
+            "required": false,
+            "example": "ASC",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Vagas retornadas com sucesso",
@@ -39,7 +73,9 @@
         }
       },
       "post": {
-        "tags": ["job"],
+        "tags": [
+          "job"
+        ],
         "summary": "Iniciar Webscrapper e salvar vagas",
         "operationId": "executeJobsScrapper",
         "requestBody": {
@@ -68,7 +104,9 @@
     },
     "/job/{id}": {
       "delete": {
-        "tags": ["job"],
+        "tags": [
+          "job"
+        ],
         "summary": "Excluir vaga pelo id",
         "operationId": "deleteJob",
         "parameters": [
@@ -107,7 +145,9 @@
     },
     "/job/counter": {
       "get": {
-        "tags": ["job"],
+        "tags": [
+          "job"
+        ],
         "summary": "Retornar o total de vagas salvas",
         "operationId": "countJobs",
         "responses": {
@@ -128,7 +168,9 @@
     },
     "/company/relocateMe": {
       "post": {
-        "tags": ["company"],
+        "tags": [
+          "company"
+        ],
         "summary": "Selecionar as empresas do site https://relocate.me/companies e salvar",
         "description": "Roda webscrapper em site https://relocate.me/companies e salva as empresas no banco de dados",
         "operationId": "executeRelocateMeCompaniesScrapper",
@@ -148,7 +190,9 @@
     },
     "/company/siaExplains": {
       "post": {
-        "tags": ["company"],
+        "tags": [
+          "company"
+        ],
         "summary": "Selecionar as empresas do site https://siaexplains.github.io/visa-sponsorship-companies/ e salvar",
         "description": "Roda webscrapper em site https://siaexplains.github.io/visa-sponsorship-companies/ e salva as empresas no banco de dados",
         "operationId": "executeSiaExplainsCompaniesScrapper",
@@ -229,7 +273,9 @@
             "items": {
               "type": "string"
             },
-            "example": ["Brasil"]
+            "example": [
+              "Brasil"
+            ]
           },
           "keyword": {
             "type": "string",
