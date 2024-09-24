@@ -6,8 +6,8 @@ export class GetJobsNumberController {
   async handle(req: Request, res: Response): Promise<Response> {
     const JobsNumber = container.resolve(GetJobsNumberUseCase)
 
-    const resultNumber = await JobsNumber.execute()
+    const total = await JobsNumber.execute()
 
-    return res.status(200).json({ resultNumber })
+    return res.status(200).json({ total })
   }
 }

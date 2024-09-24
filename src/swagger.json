@@ -25,9 +25,7 @@
   "paths": {
     "/job": {
       "get": {
-        "tags": [
-          "job"
-        ],
+        "tags": ["job"],
         "summary": "Retornar as vagas salvas",
         "operationId": "getJobs",
         "description": "Retornar as vagas que correspondem aos filtros enviados ou todas as vagas caso nenhum filtro seja enviado",
@@ -50,10 +48,7 @@
             "example": "ASC",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -73,9 +68,7 @@
         }
       },
       "post": {
-        "tags": [
-          "job"
-        ],
+        "tags": ["job"],
         "summary": "Iniciar Webscrapper e salvar vagas",
         "operationId": "executeJobsScrapper",
         "requestBody": {
@@ -104,9 +97,7 @@
     },
     "/job/{id}": {
       "delete": {
-        "tags": [
-          "job"
-        ],
+        "tags": ["job"],
         "summary": "Excluir vaga pelo id",
         "operationId": "deleteJob",
         "parameters": [
@@ -145,9 +136,7 @@
     },
     "/job/counter": {
       "get": {
-        "tags": [
-          "job"
-        ],
+        "tags": ["job"],
         "summary": "Retornar o total de vagas salvas",
         "operationId": "countJobs",
         "responses": {
@@ -156,9 +145,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/CounterResponse"
-                  }
+                  "$ref": "#/components/schemas/CounterResponse"
                 }
               }
             }
@@ -168,9 +155,7 @@
     },
     "/company/relocateMe": {
       "post": {
-        "tags": [
-          "company"
-        ],
+        "tags": ["company"],
         "summary": "Selecionar as empresas do site https://relocate.me/companies e salvar",
         "description": "Roda webscrapper em site https://relocate.me/companies e salva as empresas no banco de dados",
         "operationId": "executeRelocateMeCompaniesScrapper",
@@ -190,9 +175,7 @@
     },
     "/company/siaExplains": {
       "post": {
-        "tags": [
-          "company"
-        ],
+        "tags": ["company"],
         "summary": "Selecionar as empresas do site https://siaexplains.github.io/visa-sponsorship-companies/ e salvar",
         "description": "Roda webscrapper em site https://siaexplains.github.io/visa-sponsorship-companies/ e salva as empresas no banco de dados",
         "operationId": "executeSiaExplainsCompaniesScrapper",
@@ -273,9 +256,7 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "Brasil"
-            ]
+            "example": ["Brasil"]
           },
           "keyword": {
             "type": "string",
