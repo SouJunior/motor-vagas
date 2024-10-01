@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { GetCompanyUseCase } from './GetCompanyUseCase.useCase'
+import { CreateCompanyJobDataUseCase } from './CreateCompanyJobDataUseCase.useCase.ts'
 import { container } from 'tsyringe'
 
-export class GetCompanyController {
+export class CreateCompanyJobDataController {
   async handle(req: Request, res: Response): Promise<Response> {
     const { name } = req.params
-    const getCompanyUseCase = container.resolve(GetCompanyUseCase)
+    const getCompanyUseCase = container.resolve(CreateCompanyJobDataUseCase)
 
     try {
       await getCompanyUseCase.execute(name)

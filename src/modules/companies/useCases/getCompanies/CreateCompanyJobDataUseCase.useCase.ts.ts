@@ -9,7 +9,7 @@ export enum CompanySource {
 }
 
 @injectable()
-export class GetCompanyUseCase {
+export class CreateCompanyJobDataUseCase {
   constructor(
     @inject('CompanyRepository')
     private companyRepository: ICompanyRepository
