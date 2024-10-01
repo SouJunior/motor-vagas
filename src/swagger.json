@@ -192,6 +192,48 @@
           }
         }
       }
+    },
+    "/company/{name}/scrapp": {
+      "post": {
+        "tags": ["company"],
+        "summary": "Executar o web scraper para uma empresa específica e salvar os dados",
+        "description": "Este endpoint executa um web scraper para coletar informações de empresas disponíveis nos sites https://relocate.me/companies ou https://siaexplains.github.io/visa-sponsorship-companies/, com base no nome fornecido na URL, e salva as informações no banco de dados.",
+        "operationId": "executeCompaniesScrapper",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Nome da fonte de dados (relocateme ou siaExplains)",
+            "schema": {
+              "type": "string",
+              "enum": ["relocateMe", "siaExplains"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Empresas coletadas e salvas com sucesso.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "{name} infos were saved successfully!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Nome da empresa inválido ou fonte de dados não suportada.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid company name or unsupported data source."
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
