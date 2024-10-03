@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  db: 
+    container_name: postgresdb
+    image: postgres:16.4-alpine3.20
+    ports: 
+      - "5432:5432"
+    environment: 
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "motordb"
