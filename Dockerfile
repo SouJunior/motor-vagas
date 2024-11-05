@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     tar \
     curl
 
-ARG GECKODRIVER_VERSION=0.34.0
+ARG GECKODRIVER_VERSION=0.35.0
 
 RUN curl -sL "https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz" -o /tmp/geckodriver.tar.gz \
  && tar -zxf /tmp/geckodriver.tar.gz -C /usr/local/bin \
