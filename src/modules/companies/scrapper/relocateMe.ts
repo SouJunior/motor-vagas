@@ -1,34 +1,49 @@
-import {By} from 'selenium-webdriver';
-import { createDriver } from '../../driver';
-import { ISaveCompanyDTO } from '../dtos/SaveCompanies.dto';
+import { By } from "selenium-webdriver";
+import logger from "../../../shared/logger/logger";
+import { createDriver } from "../../driver";
+import { ISaveCompanyDTO } from "../dtos/SaveCompanies.dto";
 
 export const relocateMe = async () => {
   const driver = await createDriver();
 
+  logger.info("Starting company scrapping");
+
   try {
-    await driver.get('https://relocate.me/companies');
+    const url = "https://relocate.me/companies";
+    logger.info(`Navigating to ${url}`);
+    await driver.get(url);
+
+    logger.info("Waiting for the page 3 seconds to load");
     await driver.sleep(3000);
-    const parentElement = await driver.findElements(By.className('wwbc-companies__link'));
+
+    logger.info("Getting company elements");
+    const parentElement = await driver.findElements(
+      By.className("wwbc-companies__link")
+    );
 
     const companies: ISaveCompanyDTO[] = [];
 
     for (const element of parentElement) {
-      const childElement = await element.findElement(By.css('span:first-child'));
-
+      logger.info("Getting company name");
+      const childElement = await element.findElement(
+        By.css("span:first-child")
+      );
       const name = await childElement.getText();
 
-      const company = { 
-          name: name.toLocaleLowerCase(),
-      }
+      const company = {
+        name: name.toLocaleLowerCase(),
+      };
 
+      logger.info(`Company ${name} added to the list`);
       companies.push(company);
     }
 
-      return companies;
+    logger.info("All companies added to the list");
 
+    return companies;
   } catch (error) {
-      console.log(error.message)
+    logger.error("An error occurred while scrapping companies", error);
   } finally {
     await driver.quit();
   }
-}
+};
