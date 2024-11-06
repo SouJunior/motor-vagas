@@ -6,11 +6,11 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080",
+      "url": "http://localhost:3333",
       "description": "Servidor de desenvolvimento"
     },
     {
-      "url": "https://motor-vagas.onrender.com",
+      "url": "https://motor-vagas-65py.onrender.com",
       "description": "Servidor de produção"
     }
   ],
@@ -69,13 +69,13 @@
       },
       "post": {
         "tags": ["job"],
-        "summary": "Iniciar Webscrapper e salvar vagas",
+        "summary": "Executar o web scraper para coletar vagas e salvar no banco de dados",
         "operationId": "executeJobsScrapper",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ListJobsSchema"
+                "$ref": "#/components/schemas/JobRequest"
               }
             }
           },
@@ -153,64 +153,22 @@
         }
       }
     },
-    "/company/relocateMe": {
-      "post": {
-        "tags": ["company"],
-        "summary": "Selecionar as empresas do site https://relocate.me/companies e salvar",
-        "description": "Roda webscrapper em site https://relocate.me/companies e salva as empresas no banco de dados",
-        "operationId": "executeRelocateMeCompaniesScrapper",
-        "responses": {
-          "201": {
-            "description": "Empresas do site relocate.me salvas com sucesso",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Relocate.me companies info saved successfully"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/company/siaExplains": {
-      "post": {
-        "tags": ["company"],
-        "summary": "Selecionar as empresas do site https://siaexplains.github.io/visa-sponsorship-companies/ e salvar",
-        "description": "Roda webscrapper em site https://siaexplains.github.io/visa-sponsorship-companies/ e salva as empresas no banco de dados",
-        "operationId": "executeSiaExplainsCompaniesScrapper",
-        "responses": {
-          "201": {
-            "description": "Empresas do site siaexplains salvas com sucesso",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "SiaExplains companies info saved successfully"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/company/{name}/scrapp": {
+    "/company": {
       "post": {
         "tags": ["company"],
         "summary": "Executar o web scraper para uma empresa específica e salvar os dados",
         "description": "Este endpoint executa um web scraper para coletar informações de empresas disponíveis nos sites https://relocate.me/companies ou https://siaexplains.github.io/visa-sponsorship-companies/, com base no nome fornecido na URL, e salva as informações no banco de dados.",
         "operationId": "executeCompaniesScrapper",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "description": "Nome da fonte de dados (relocateme ou siaExplains)",
-            "schema": {
-              "type": "string",
-              "enum": ["relocateMe", "siaExplains"]
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyRequest"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "201": {
             "description": "Empresas coletadas e salvas com sucesso.",
@@ -238,6 +196,18 @@
   },
   "components": {
     "schemas": {
+      "CompanyRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "relocateMe",
+            "description": "Nome da empresa que deseja coletar informações",
+            "enum": ["relocateMe", "siaExplains"]
+          }
+        }
+      },
       "Job": {
         "type": "object",
         "properties": {
@@ -290,7 +260,7 @@
           }
         }
       },
-      "ListJobsSchema": {
+      "JobRequest": {
         "type": "object",
         "properties": {
           "locations": {
@@ -315,18 +285,6 @@
         "properties": {
           "total": {
             "type": "number"
-          }
-        }
-      }
-    },
-    "requestBodies": {
-      "UploadImageSchema": {
-        "description": "Params to run the webscrapper",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListJobsSchema"
-            }
           }
         }
       }
